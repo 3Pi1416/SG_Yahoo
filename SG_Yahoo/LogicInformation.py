@@ -1,10 +1,8 @@
 #Par Carrier Hugo 
 import json
-from flask import Flask, request
 from pathlib import Path
 
-
-class Logic:
+class LogicInformation:
     #Class to work with logic information
     #Could add put, post, delete in the futur. 
     def get(self,logic_to_get = None):
@@ -28,21 +26,3 @@ class Logic:
         except:
             file.close
             return {}
-
-logic = Logic()
-app = Flask(__name__)
-
-#front page
-@app.route('/', methods=['GET'])
-def home():
-    return '''<h1>Un beau problème</h1>
-<p>Un Seul Api existe : Logic</p>'''
-
-
-@app.route('/logic', methods=['GET'])
-def get_logic():
-    logic_to_get = request.args.get('logic')
-    return logic.get(logic_to_get)
-
-
-app.run(None,port = 8000)
