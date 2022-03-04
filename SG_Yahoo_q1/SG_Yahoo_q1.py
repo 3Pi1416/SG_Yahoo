@@ -18,13 +18,12 @@ def request_yahoo_quote_regularMarketPreviousClose(product: str, region: str = "
         # please, don't abuse it, it should have been private
         "x-rapidapi-key": "1ff1c60385msh92ed0e32a2fa903p105892jsn24b1705030c5"
     }
-
-    response = requests.request(
-        "GET", url, headers=headers, params=querystring).json()
-
     try:
+        response = requests.request(
+            "GET", url, headers=headers, params=querystring).json()
+
         price_to_return = response["price"]["regularMarketPreviousClose"]["raw"]
-    except:
+    except:  #depeding on how the client want it, many exception cases can existe with requests.exceptions
         price_to_return = None
 
     return price_to_return
@@ -38,7 +37,7 @@ def ask_basic_info():
     :return product: product (symbol). None if quantity was not a number.
     """
     quantity = input("Quantity:")
-    #Try float because with the new trend (fraction of a stock), we might want a float.
+    # Try float because with the new trend (fraction of a stock), we might want a float.
     try:
         quantity = float(quantity)
     except:
