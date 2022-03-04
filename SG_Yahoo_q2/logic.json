@@ -1,0 +1,7 @@
+{
+    "notionalRetrival":{
+      "source":"Yahoo Finance",
+      "formula":"Quantity * last close price"
+      
+    }
+  }
